@@ -9,7 +9,6 @@ export async function proxy(request: NextRequest) {
   if (!sessionCookie) {
     return NextResponse.redirect(new URL('/auth/login', request.url));
   }
-
   return NextResponse.next();
 }
 
