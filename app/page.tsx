@@ -1,3 +1,9 @@
+import { Header } from '@/components/shared/header';
+
 export default function Home() {
-  return <div className="text-3xl">alola</div>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
