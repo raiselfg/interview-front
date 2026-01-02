@@ -11,8 +11,8 @@ export default async function ProfilePage() {
   const user = session.user;
   return (
     <div>
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
+      <p>Имя: {user.name}</p>
+      <p>Почта: {user.email}</p>
       <LogoutButton />
     </div>
   );

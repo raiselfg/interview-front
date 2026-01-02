@@ -1,7 +1,7 @@
 'use server';
 
+import { FormState } from '@/types';
 import { auth } from '../better-auth';
-import { FormState } from '../definitions';
 import { headers } from 'next/headers';
 
 export const logout = async (): Promise<FormState> => {
@@ -9,10 +9,10 @@ export const logout = async (): Promise<FormState> => {
     await auth.api.signOut({
       headers: await headers(),
     });
-    return { message: 'Logged out successfully', success: true };
+    return { message: 'Выход выполнен успешно', success: true };
   } catch (error) {
     return {
-      message: error instanceof Error ? error.message : 'Failed to logout',
+      message: 'Не удалось выйти',
       success: false,
     };
   }

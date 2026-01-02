@@ -14,15 +14,16 @@ export const OAuthButton = ({ provider }: Props) => {
   const handleLogin = async () => {
     const url = await oauthLogin(provider);
     if (url) {
-      toast.success('Redirecting to login...');
+      toast.success('Перенаправление на вход...');
       router.push(url);
     } else {
-      toast.error('Failed to login');
+      toast.error('Не удалось войти');
     }
   };
+  const providerName = provider.charAt(0).toUpperCase() + provider.slice(1);
   return (
     <Button className="w-full" onClick={handleLogin}>
-      <p>Login with {provider}</p>
+      <p>Вход с помощью {providerName}</p>
     </Button>
   );
 };

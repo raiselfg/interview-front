@@ -28,10 +28,10 @@ export const LogoutButton = () => {
       <Button type="submit" disabled={pending}>
         {pending ? (
           <div className="flex items-center gap-2">
-            <Spinner /> <p>Logging out</p>
+            <Spinner /> <p>Выход...</p>
           </div>
         ) : (
-          <p>Logout</p>
+          <p>Выйти</p>
         )}
       </Button>
     </form>

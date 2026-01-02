@@ -1,7 +1,8 @@
 'use server';
 
-import { SignupFormSchema, FormState } from '../definitions';
+import { SignupFormSchema } from '../definitions';
 import { auth } from '../better-auth';
+import { FormState } from '@/types';
 
 export const signUp = async (prevState: FormState, formData: FormData): Promise<FormState> => {
   try {
@@ -29,11 +30,11 @@ export const signUp = async (prevState: FormState, formData: FormData): Promise<
     });
 
     return data.user
-      ? { message: 'Sign up successful', success: true }
-      : { message: 'Failed to sign up', success: false };
+      ? { message: 'Регистрация выполнена успешно', success: true }
+      : { message: 'Не удалось зарегистрироваться', success: false };
   } catch (error) {
     return {
-      message: error instanceof Error ? error.message : 'Failed to sign up',
+      message: 'Не удалось зарегистрироваться',
       success: false,
     };
   }

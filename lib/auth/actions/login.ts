@@ -1,7 +1,8 @@
 'use server';
 
-import { LoginFormSchema, FormState } from '../definitions';
+import { LoginFormSchema } from '../definitions';
 import { auth } from '../better-auth';
+import { FormState } from '@/types';
 
 export const login = async (prevState: FormState, formData: FormData): Promise<FormState> => {
   try {
@@ -28,11 +29,11 @@ export const login = async (prevState: FormState, formData: FormData): Promise<F
     });
 
     return data.user
-      ? { message: 'Sign in successful', success: true }
-      : { message: 'Failed to sign in', success: false };
+      ? { message: 'Вход выполнен успешно', success: true }
+      : { message: 'Не удалось войти', success: false };
   } catch (error) {
     return {
-      message: error instanceof Error ? error.message : 'Failed to sign in',
+      message: 'Не удалось войти',
       success: false,
     };
   }
