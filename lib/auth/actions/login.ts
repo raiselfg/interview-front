@@ -4,6 +4,7 @@ import { LoginFormSchema } from '../definitions';
 import { auth } from '../better-auth';
 import { FormState } from '@/types';
 import { headers } from 'next/headers';
+import { APP_ROUTES } from '@/constants';
 
 export const login = async (prevState: FormState, formData: FormData): Promise<FormState> => {
   try {
@@ -26,6 +27,7 @@ export const login = async (prevState: FormState, formData: FormData): Promise<F
         email,
         password,
         rememberMe: true,
+        callbackURL: `${process.env.NEXT_PUBLIC_BASE_URL}${APP_ROUTES.PROFILE}`,
       },
       // headers: await headers(),
       asResponse: true, // Essential for setting cookies in Next.js 16

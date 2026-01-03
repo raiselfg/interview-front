@@ -18,7 +18,7 @@ export const LoginForm = () => {
     if (state?.message) {
       if (state.success) {
         toast.success(state.message);
-        router.push(APP_ROUTES.PROFILE);
+        // router.push(`${process.env.NEXT_PUBLIC_BASE_URL}${APP_ROUTES.PROFILE}`);
       } else {
         toast.error(state.message);
       }

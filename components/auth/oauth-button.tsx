@@ -14,7 +14,7 @@ export const OAuthButton = ({ provider }: Props) => {
     try {
       const { data, error } = await authClient.signIn.social({
         provider,
-        callbackURL: APP_ROUTES.PROFILE,
+        callbackURL: `${process.env.NEXT_PUBLIC_BASE_URL}${APP_ROUTES.PROFILE}`,
       });
 
       if (error) {
