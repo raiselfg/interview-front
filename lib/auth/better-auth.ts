@@ -44,15 +44,15 @@ export const auth = betterAuth({
     storage: 'memory',
   },
 
-  advanced: {
-    useSecureCookies: process.env.NODE_ENV === 'production',
-    defaultCookieAttributes: {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-    },
-    cookiePrefix: 'frontsobes',
-  },
+  // advanced: {
+  //   useSecureCookies: process.env.NODE_ENV === 'production',
+  //   defaultCookieAttributes: {
+  //     httpOnly: true,
+  //     secure: process.env.NODE_ENV === 'production',
+  //     sameSite: 'lax',
+  //   },
+  //   cookiePrefix: 'frontsobes',
+  // },
 
   plugins: [nextCookies()],
 });
