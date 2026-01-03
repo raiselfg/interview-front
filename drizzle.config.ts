@@ -6,6 +6,8 @@ export default defineConfig({
   schema: './drizzle/schema.ts',
   dialect: 'postgresql',
   dbCredentials: {
-    url: process.env.DATABASE_URL!,
+    // Migrations should use the direct connection (port 5432)
+    // because Transaction Pooler (6543) has limitations for DDL commands
+    url: process.env.DIRECT_URL || process.env.DATABASE_URL!,
   },
 });
