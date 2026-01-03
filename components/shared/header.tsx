@@ -56,7 +56,7 @@ export const Header = () => {
             </Tooltip>
 
             <Tooltip>
-              <TooltipTrigger asChild suppressHydrationWarning>
+              <TooltipTrigger>
                 <ThemeToggle />
               </TooltipTrigger>
               <TooltipContent>
