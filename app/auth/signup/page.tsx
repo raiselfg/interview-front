@@ -1,10 +1,11 @@
 import { OAuthButton } from '@/components/auth/oauth-button';
 import { SignupForm } from '@/components/auth/signup-form';
 import Link from 'next/link';
+import { APP_ROUTES } from '@/constants';
 
 export default function SignupPage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-svh">
+    <div className="p-2 flex flex-col items-center justify-center min-h-svh">
       <h1 className="text-2xl font-bold">Регистрация</h1>
       <div className="w-full max-w-xs flex flex-col gap-2">
         <SignupForm />
@@ -13,7 +14,7 @@ export default function SignupPage() {
       <span className="flex gap-1 items-center text-sm text-muted-foreground mt-2">
         <p>Уже есть аккаунт?</p>
         <p className="underline underline-offset-4">
-          <Link href="/auth/login">Войти</Link>
+          <Link href={APP_ROUTES.LOGIN}>Войти</Link>
         </p>
       </span>
     </div>

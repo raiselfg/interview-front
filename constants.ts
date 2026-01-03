@@ -3,6 +3,11 @@ export const APP_ROUTES = {
   LOGIN: '/auth/login',
   SIGNUP: '/auth/signup',
   PROFILE: '/profile',
+  TRAINER: '/trainer',
+  INTERVIEW: '/interview',
+  QUESTIONS: '/questions',
+  PRICING: '/pricing',
+  ABOUT: '/about',
 };
 
 export const API_ROUTES = {

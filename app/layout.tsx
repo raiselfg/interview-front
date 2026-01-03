@@ -34,7 +34,7 @@ export default function RootLayout({
           <ShootingStars className="z-[-1]" />
           <StarsBackground className="z-[-1]" />
         </ThemeProvider>
-        <Toaster position="top-center" duration={4000} />
+        <Toaster position="top-center" duration={3000} />
       </body>
     </html>
   );

@@ -2,61 +2,29 @@
 
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { motion, AnimatePresence } from 'motion/react';
-import { cn } from '@/lib/utils';
+import { motion } from 'motion/react';
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
 
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <button
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className={cn(
-            'relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50',
-            theme === 'dark' ? 'bg-primary' : 'bg-input',
-          )}
-          aria-label="Toggle theme"
-        >
-          <motion.div
-            layout
-            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-            className={cn(
-              'pointer-events-none flex items-center justify-center h-5 w-5 rounded-full bg-background shadow-lg ring-0',
-              theme === 'dark' ? 'translate-x-5' : 'translate-x-0',
-            )}
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              {theme === 'dark' ? (
-                <motion.div
-                  key="moon"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  <Moon className="h-3 w-3 text-primary" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="sun"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  <Sun className="h-3 w-3 text-amber-500" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        </button>
-      </TooltipTrigger>
-      <TooltipContent>
-        <p>Переключить тему</p>
-      </TooltipContent>
-    </Tooltip>
+    <motion.button
+      whileTap={{ scale: 0.88 }}
+      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+      className="relative flex h-8 w-14 items-center rounded-full bg-muted/40 p-1 border border-border cursor-pointer"
+      aria-label="Toggle theme"
+    >
+      <div className="flex w-full items-center justify-between px-1 text-muted-foreground/50">
+        <Sun className="h-3.5 w-3.5" />
+        <Moon className="h-3.5 w-3.5" />
+      </div>
+
+      <div className="absolute left-1 flex h-6 w-6 items-center justify-center rounded-full bg-background shadow-md dark:translate-x-6">
+        <Sun className="h-4 w-4 text-amber-400 dark:rotate-90 dark:scale-0" />
+        <Moon className="absolute h-4 w-4 text-violet-400 rotate-90 scale-0 dark:rotate-0 dark:scale-100" />
+      </div>
+
+      <span className="sr-only">Toggle theme</span>
+    </motion.button>
   );
 }
