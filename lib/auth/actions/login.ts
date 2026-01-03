@@ -3,6 +3,7 @@
 import { LoginFormSchema } from '../definitions';
 import { auth } from '../better-auth';
 import { FormState } from '@/types';
+import { headers } from 'next/headers';
 
 export const login = async (prevState: FormState, formData: FormData): Promise<FormState> => {
   try {
@@ -20,18 +21,23 @@ export const login = async (prevState: FormState, formData: FormData): Promise<F
 
     const { email, password } = validatedFields.data;
 
-    const data = await auth.api.signInEmail({
+    const response = await auth.api.signInEmail({
       body: {
         email,
         password,
         rememberMe: true,
       },
+      // headers: await headers(),
+      asResponse: true, // Essential for setting cookies in Next.js 16
     });
 
-    return data.user
-      ? { message: 'Вход выполнен успешно', success: true }
-      : { message: 'Не удалось войти', success: false };
+    if (response.ok) {
+      return { message: 'Вход выполнен успешно', success: true };
+    } else {
+      return { message: 'Неверные учетные данные', success: false };
+    }
   } catch (error) {
+    console.error('Login error:', error);
     return {
       message: 'Не удалось войти',
       success: false,

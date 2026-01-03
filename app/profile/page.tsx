@@ -4,12 +4,12 @@ import { redirect } from 'next/navigation';
 import { APP_ROUTES } from '@/constants';
 
 export default async function ProfilePage() {
-  const session = await getSession();
+  const data = await getSession();
 
-  if (!session) {
+  if (!data) {
     redirect(APP_ROUTES.LOGIN);
   }
-  const user = session.user;
+  const user = data.user;
   return (
     <div>
       <p>Имя: {user.name}</p>

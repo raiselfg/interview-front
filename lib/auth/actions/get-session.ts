@@ -5,10 +5,17 @@ import { auth } from '../better-auth';
 
 export const getSession = async () => {
   try {
-    const session = await auth.api.getSession({
+    const response = await auth.api.getSession({
       headers: await headers(),
+      asResponse: true,
     });
-    return session;
+
+    if (!response.ok) {
+      return null;
+    } else {
+      const data = await response.json();
+      return data;
+    }
   } catch (error) {
     return null;
   }

@@ -3,6 +3,7 @@
 import { SignupFormSchema } from '../definitions';
 import { auth } from '../better-auth';
 import { FormState } from '@/types';
+import { headers } from 'next/headers';
 
 export const signUp = async (prevState: FormState, formData: FormData): Promise<FormState> => {
   try {
@@ -21,18 +22,28 @@ export const signUp = async (prevState: FormState, formData: FormData): Promise<
 
     const { name, email, password } = validatedFields.data;
 
-    const data = await auth.api.signUpEmail({
+    const response = await auth.api.signUpEmail({
       body: {
         name,
         email,
         password,
       },
+      // headers: await headers(),
+      asResponse: true, // Essential for setting session cookies
     });
 
-    return data.user
-      ? { message: 'Регистрация выполнена успешно', success: true }
-      : { message: 'Не удалось зарегистрироваться', success: false };
+    if (response.ok) {
+      return { message: 'Регистрация выполнена успешно', success: true };
+    } else {
+      // Handle specific error cases
+      const errorData = await response.json();
+      if (errorData.message?.includes('already exists')) {
+        return { message: 'Пользователь с таким email уже существует', success: false };
+      }
+      return { message: 'Не удалось зарегистрироваться', success: false };
+    }
   } catch (error) {
+    console.error('SignUp error:', error);
     return {
       message: 'Не удалось зарегистрироваться',
       success: false,

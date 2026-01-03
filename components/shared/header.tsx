@@ -35,9 +35,9 @@ export const Header = () => {
             <div className="flex gap-6">
               {links.map((link, index) => (
                 <Tooltip key={`${index}-${link.href}`}>
-                  <TooltipTrigger>
+                  <TooltipTrigger asChild>
                     <Link href={link.href}>
-                      <p>{link.label}</p>
+                      <span className="cursor-pointer">{link.label}</span>
                     </Link>
                   </TooltipTrigger>
                   <TooltipContent>
@@ -47,8 +47,10 @@ export const Header = () => {
               ))}
             </div>
             <Tooltip>
-              <TooltipTrigger>
-                <ProfileBadge />
+              <TooltipTrigger asChild>
+                <div className="flex items-center">
+                  <ProfileBadge />
+                </div>
               </TooltipTrigger>
               <TooltipContent>
                 <p>Перейти в профиль</p>
@@ -56,7 +58,7 @@ export const Header = () => {
             </Tooltip>
 
             <Tooltip>
-              <TooltipTrigger>
+              <TooltipTrigger asChild>
                 <ThemeToggle />
               </TooltipTrigger>
               <TooltipContent>

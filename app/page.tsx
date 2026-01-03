@@ -10,7 +10,7 @@ export default function Home() {
       <Header />
 
       <main className="relative">
-        <Container className="mt-16 lg:mt-24 p-4">
+        <Container className="mt-16 lg:mt-24 p-4 lg:p-2 xl:p-0">
           <HeroSection />
           <TrainerSection />
           <CTASection />
