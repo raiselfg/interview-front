@@ -38,7 +38,7 @@ export const Header = () => {
               ))}
             </div>
             <Tooltip>
-              <TooltipTrigger asChild>
+              <TooltipTrigger>
                 <ProfileBadge />
               </TooltipTrigger>
               <TooltipContent>
