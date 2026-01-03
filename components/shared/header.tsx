@@ -3,7 +3,14 @@ import { ThemeToggle } from '../theme/theme-toggle';
 import { Container } from '../ui/container';
 import { ProfileBadge } from './profile-badge';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { APP_ROUTES } from '@/constants';
 
@@ -18,10 +25,10 @@ const links = [
 export const Header = () => {
   return (
     <header className="sticky top-2 z-1">
-      <Container className="w-max p-4 border rounded-2xl backdrop-blur-md bg-background/80">
+      <Container className="w-max p-4 border rounded-2xl backdrop-blur-md bg-background/50">
         <div className="flex items-center justify-center gap-8">
-          <Link href={APP_ROUTES.ROOT} className="text-xl">
-            Better Frontend
+          <Link href={APP_ROUTES.ROOT}>
+            <h1 className="text-xl">Фронт Собес</h1>
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">
@@ -29,7 +36,9 @@ export const Header = () => {
               {links.map((link, index) => (
                 <Tooltip key={`${index}-${link.href}`}>
                   <TooltipTrigger>
-                    <Link href={link.href}>{link.label}</Link>
+                    <Link href={link.href}>
+                      <p>{link.label}</p>
+                    </Link>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>{link.tooltipMessage}</p>
@@ -63,6 +72,7 @@ export const Header = () => {
                 <Menu />
               </SheetTrigger>
               <SheetContent>
+                <SheetDescription className="sr-only"></SheetDescription>
                 <SheetHeader>
                   <SheetTitle>Меню</SheetTitle>
                 </SheetHeader>
