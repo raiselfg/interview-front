@@ -12,11 +12,8 @@ export const APP_ROUTES = {
 
 export const API_ROUTES = {
   GRADES: '/grades',
-  PHASES: '/phases',
-  SECTIONS: '/sections',
+  TYPES: '/types',
   QUESTIONS: '/questions',
-  TAGS: '/tags',
-  QUESTION_TAGS: '/questionTags',
   ANSWERS: '/answers',
 };
 

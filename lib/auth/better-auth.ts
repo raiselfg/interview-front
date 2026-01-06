@@ -28,31 +28,22 @@ export const auth = betterAuth({
     },
   },
 
-  session: {
-    expiresIn: 60 * 60 * 24 * 7, // 7 days
-    updateAge: 60 * 60 * 24, // 1 day
-    cookieCache: {
-      enabled: true,
-      maxAge: 5 * 60, // 5 minutes
-    },
-  },
-
   rateLimit: {
-    enabled: process.env.NODE_ENV === 'production',
+    enabled: true,
     window: 10,
     max: 100,
     storage: 'memory',
   },
 
-  // advanced: {
-  //   useSecureCookies: process.env.NODE_ENV === 'production',
-  //   defaultCookieAttributes: {
-  //     httpOnly: true,
-  //     secure: process.env.NODE_ENV === 'production',
-  //     sameSite: 'lax',
-  //   },
-  //   cookiePrefix: 'frontsobes',
-  // },
+  advanced: {
+    useSecureCookies: true,
+    defaultCookieAttributes: {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'lax',
+    },
+    cookiePrefix: 'frontsobes',
+  },
 
   plugins: [nextCookies()],
 });

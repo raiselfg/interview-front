@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { FaJsSquare, FaReact } from 'react-icons/fa';
@@ -36,13 +33,9 @@ export function TrainerSection() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mx-auto w-xs lg:w-full">
         {TECH_STACK.map((item, index) => (
-          <motion.div
+          <div
             key={`tech-stack-${index}-${item.name}`}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ delay: index * 0.1 }}
-            className="group p-8 border border-border rounded-3xl bg-accent/35 transition-all cursor-pointer"
+            className="group p-8 border border-border rounded-3xl bg-accent/35"
           >
             <div className="flex items-center gap-2 mb-4">
               {item.icon}
@@ -50,14 +43,9 @@ export function TrainerSection() {
             </div>
 
             <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: `${item.progress}%` }}
-                transition={{ duration: 1, ease: 'easeOut' }}
-                className="h-full bg-primary"
-              />
+              <div className="h-full bg-primary" />
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

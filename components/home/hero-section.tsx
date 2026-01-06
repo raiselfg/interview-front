@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'motion/react';
 import { Zap, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CodeBlock } from '../ui/code-block';
@@ -20,13 +17,7 @@ const code = `function MyComponent(props) {
 export function HeroSection() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="flex flex-col gap-6"
-      >
+      <div className="flex flex-col gap-6">
         <TextGenerateEffect
           filter
           className="text-5xl lg:text-7xl font-bold text-center lg:text-left"
@@ -49,22 +40,16 @@ export function HeroSection() {
             <Users /> <p>Найти напарника</p>
           </Button>
         </div>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="relative bg-card border border-border rounded-3xl p-3 shadow-2xl w-xs lg:w-md xl:w-full mx-auto"
-      >
+      <div className="relative bg-card border border-border rounded-3xl p-3 shadow-2xl w-xs lg:w-md xl:w-full mx-auto">
         <div className="space-y-3 font-mono text-sm text-muted-foreground">
           <p className="text-primary font-bold flex items-center gap-1">
             <Spinner /> Анализирую код...
           </p>
           <CodeBlock language="jsx" filename="example.jsx" code={code} />
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

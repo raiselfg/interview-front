@@ -1,20 +1,11 @@
-'use client';
-
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { motion } from 'motion/react';
 import { EncryptedText } from '../ui/encrypted-text';
 
 export function CTASection() {
   return (
     <div className="mt-32 flex flex-col gap-12 items-center">
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: false }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-foreground w-xs md:w-2xl lg:w-full"
-      >
+      <div className="text-foreground w-xs md:w-2xl lg:w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 text-center md:text-left gap-8 items-center border border-border bg-card/50 rounded-[2.5rem] p-8 lg:p-12 overflow-hidden relative">
           <div className="relative z-10">
             <h2 className="text-4xl font-bold mb-4">Готов стать лучше?</h2>
@@ -37,7 +28,7 @@ export function CTASection() {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
 
       <EncryptedText className="text-muted-foreground" text="made by @raiselfg" />
     </div>
