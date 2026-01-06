@@ -8,9 +8,8 @@ export default function Home() {
   return (
     <>
       <Header />
-
-      <main className="relative">
-        <Container className="mt-16 lg:mt-24 p-4 lg:p-2 xl:p-0">
+      <main>
+        <Container className="flex flex-col gap-12 lg:mt-24 p-4 lg:p-3 2xl:p-0">
           <HeroSection />
           <TrainerSection />
           <CTASection />

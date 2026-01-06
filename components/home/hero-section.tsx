@@ -25,24 +25,27 @@ export function HeroSection() {
         />
 
         <p className="text-lg text-muted-foreground text-center lg:text-left">
-          <EncryptedText revealDelayMs={30} text="Тренируйся в паре с AI или реальным напарником" />
+          <EncryptedText revealDelayMs={22} text="Тренируйся в паре с AI или реальным напарником" />
         </p>
 
         <div className="flex flex-wrap gap-4 items-center justify-center lg:justify-start">
-          <Button size="lg" className="rounded-2xl h-14 px-8 text-base flex gap-3 items-center">
+          <Button
+            size="lg"
+            className="rounded-2xl h-14 px-8 text-base flex gap-3 items-center cursor-pointer"
+          >
             <Zap className="fill-current" /> <p>Начать с AI</p>
           </Button>
           <Button
             variant="outline"
             size="lg"
-            className="rounded-2xl h-14 px-8 text-base flex gap-3 items-center"
+            className="rounded-2xl h-14 px-8 text-base flex gap-3 items-center cursor-pointer"
           >
             <Users /> <p>Найти напарника</p>
           </Button>
         </div>
       </div>
 
-      <div className="relative bg-card border border-border rounded-3xl p-3 shadow-2xl w-xs lg:w-md xl:w-full mx-auto">
+      <div className="relative bg-card border border-border rounded-3xl p-3 shadow-2xl w-full max-w-2xl mx-auto">
         <div className="space-y-3 font-mono text-sm text-muted-foreground">
           <p className="text-primary font-bold flex items-center gap-1">
             <Spinner /> Анализирую код...

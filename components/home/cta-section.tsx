@@ -1,36 +1,39 @@
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { EncryptedText } from '../ui/encrypted-text';
+
+const features = [
+  { name: 'Увеличенные возможности AI' },
+  { name: 'Лучшие тренировки' },
+  { name: 'Персональная аналитика' },
+];
 
 export function CTASection() {
   return (
-    <div className="mt-32 flex flex-col gap-12 items-center">
-      <div className="text-foreground w-xs md:w-2xl lg:w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 text-center md:text-left gap-8 items-center border border-border bg-card/50 rounded-[2.5rem] p-8 lg:p-12 overflow-hidden relative">
-          <div className="relative z-10">
-            <h2 className="text-4xl font-bold mb-4">Готов стать лучше?</h2>
-            <p className="text-muted-foreground text-lg mb-8 max-w-sm">
-              Получи доступ к расширенным возможностям.
-            </p>
-            <Button size="lg" className="rounded-xl">
-              Узнать цены
-            </Button>
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {['Безлимит AI', 'Лучшие тренировки', 'Персональная аналитика'].map((f) => (
-              <div
-                key={f}
-                className="flex items-center gap-3 p-4 bg-background border border-border rounded-2xl"
-              >
-                <Check className="h-4 w-4 text-primary" />
-                <span className="font-medium">{f}</span>
-              </div>
-            ))}
-          </div>
+    <div className="flex flex-col gap-12 items-center">
+      <div className="text-foreground w-full max-w-2xl lg:max-w-full grid grid-cols-1 md:grid-cols-2 text-center md:text-left gap-8 items-center border border-border bg-card/50 rounded-[2.5rem] p-8 lg:p-12 overflow-hidden relative">
+        <div className="mx-auto flex flex-col items-center md:items-start gap-6">
+          <h2 className="text-4xl font-bold">Готов стать лучше?</h2>
+          <p className="text-muted-foreground text-lg max-w-sm">
+            Получи доступ к расширенным возможностям.
+          </p>
+          <Button size="lg" className="rounded-xl">
+            Узнать цены
+          </Button>
+        </div>
+        <div className="grid grid-cols-1 gap-4">
+          {features.map((feature, index) => (
+            <div
+              key={`${feature.name}-${index}`}
+              className="flex items-center gap-3 p-4 bg-background border border-border rounded-2xl"
+            >
+              <Check className="h-4 w-4 text-primary" />
+              <span className="font-medium">{feature.name}</span>
+            </div>
+          ))}
         </div>
       </div>
 
-      <EncryptedText className="text-muted-foreground" text="made by @raiselfg" />
+      <span className="text-muted-foreground">made by @raiselfg</span>
     </div>
   );
 }
