@@ -18,7 +18,7 @@ export type Grade = {
   updatedAt: Date | null;
 };
 
-export type Type = {
+export type Technology = {
   id: string;
   name: string;
   order: number;

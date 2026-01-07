@@ -12,9 +12,9 @@ export const APP_ROUTES = {
 
 export const API_ROUTES = {
   GRADES: '/grades',
-  TYPES: '/types',
+  TECHNOLOGIES: '/technologies',
   QUESTIONS: '/questions',
   ANSWERS: '/answers',
 };
 
-export const API_BASE_URL = 'http://localhost:4000/';
+export const API_BASE_URL = 'http://localhost:4000';
