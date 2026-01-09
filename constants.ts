@@ -18,3 +18,19 @@ export const API_ROUTES = {
 };
 
 export const API_BASE_URL = 'http://localhost:4000';
+
+export const GRADE_COLORS = new Map<string, string>([
+  ['Junior', 'bg-cyan-600'],
+  ['Middle', 'bg-purple-600'],
+  ['Senior', 'bg-red-600'],
+]);
+
+export const CODE_BLOCK_LANGUAGES = new Map<string, string>([
+  ['HTML', 'html'],
+  ['CSS', 'css'],
+  ['JavaScript', 'javascript'],
+  ['TypeScript', 'typescript'],
+  ['React', 'jsx'],
+  ['NextJS', 'tsx'],
+  ['Git', 'git'],
+]);

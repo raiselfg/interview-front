@@ -1,36 +1,74 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { API_BASE_URL, API_ROUTES, APP_ROUTES } from '@/constants';
+import { APP_ROUTES } from '@/constants';
 import { Technology } from '@/types';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { useState } from 'react';
 
-export async function TechnologiesSidebar() {
-  try {
-    const res = await fetch(`${API_BASE_URL}${API_ROUTES.TECHNOLOGIES}`, {
-      next: { revalidate: 3600 },
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const technologies: Technology[] = await res.json();
+// Вынести общий компонент для кнопок
+function TechnologyButton({
+  tech,
+  isActive,
+  onClick,
+}: {
+  tech: Technology;
+  isActive: boolean;
+  onClick?: () => void;
+}) {
+  return (
+    <Link href={`${APP_ROUTES.QUESTIONS}/${tech.name}`} onClick={onClick}>
+      <Button variant={isActive ? 'default' : 'ghost'} className="w-full justify-start">
+        {tech.name}
+      </Button>
+    </Link>
+  );
+}
 
-    return (
-      <ScrollArea className="w-full">
-        <div className="flex flex-col gap-2 w-full">
-          {technologies.map((technology, index) => (
-            <Link
-              key={`${index}-${technology.name}`}
-              href={`${APP_ROUTES.QUESTIONS}/${technology.name}`}
-            >
-              <Button variant={'ghost'}>{technology.name}</Button>
-            </Link>
-          ))}
-        </div>
-      </ScrollArea>
-    );
-  } catch (error) {
-    console.error(error);
-    return <div>Error loading technologies</div>;
+export function TechnologiesSidebar({ technologies }: { technologies: Technology[] }) {
+  const params = useParams();
+  const paramsTech = decodeURIComponent(String(params.technology || ''));
+  const [isOpen, setIsOpen] = useState(false);
+
+  if (!technologies?.length) {
+    return <div className="text-sm text-muted-foreground">Технологии не найдены</div>;
   }
+
+  const buttonList = (
+    <div className="flex flex-col gap-2.5">
+      {technologies.map((tech) => (
+        <TechnologyButton
+          key={`${tech.order}-${tech.name}`}
+          tech={tech}
+          isActive={paramsTech === tech.name}
+          onClick={() => setIsOpen(false)}
+        />
+      ))}
+    </div>
+  );
+
+  return (
+    <>
+      {/* Desktop */}
+      <ScrollArea className="hidden md:block">{buttonList}</ScrollArea>
+
+      {/* Mobile */}
+      <div className="block md:hidden">
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <Button className="w-full justify-center">{paramsTech || 'Выберите технологию'}</Button>
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Технологии</SheetTitle>
+            </SheetHeader>
+            <div className="flex flex-col gap-2.5 px-4">{buttonList}</div>
+          </SheetContent>
+        </Sheet>
+      </div>
+    </>
+  );
 }

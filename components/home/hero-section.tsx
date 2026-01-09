@@ -50,7 +50,7 @@ export function HeroSection() {
           <p className="text-primary font-bold flex items-center gap-1">
             <Spinner /> Анализирую код...
           </p>
-          <CodeBlock language="jsx" filename="example.jsx" code={code} />
+          <CodeBlock language="tsx" code={code} />
         </div>
       </div>
     </div>

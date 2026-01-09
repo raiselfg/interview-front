@@ -3,8 +3,6 @@ import { Montserrat } from 'next/font/google';
 import '@/app/globals.css';
 import { Toaster } from 'sonner';
 import { ThemeProvider } from '@/components/theme/theme-provider';
-import { ShootingStars } from '@/components/ui/shooting-stars';
-import { StarsBackground } from '@/components/ui/stars-background';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -23,7 +21,7 @@ export default function Layout({
 }>) {
   return (
     <html lang="ru" suppressHydrationWarning>
-      <body className={`${montserrat.variable} min-h-screen antialiased relative`}>
+      <body className={`${montserrat.variable} min-h-screen antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -31,8 +29,6 @@ export default function Layout({
           disableTransitionOnChange
         >
           {children}
-          <ShootingStars className="z-[-1]" />
-          <StarsBackground className="z-[-1]" />
         </ThemeProvider>
         <Toaster position="top-center" duration={3000} />
       </body>

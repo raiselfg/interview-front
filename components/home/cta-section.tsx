@@ -1,5 +1,7 @@
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { APP_ROUTES } from '@/constants';
 
 const features = [
   { name: 'Увеличенные возможности AI' },
@@ -16,9 +18,11 @@ export function CTASection() {
           <p className="text-muted-foreground text-lg max-w-sm">
             Получи доступ к расширенным возможностям.
           </p>
-          <Button size="lg" className="rounded-xl">
-            Узнать цены
-          </Button>
+          <Link href={APP_ROUTES.PRICING}>
+            <Button size="lg" className="rounded-xl cursor-pointer">
+              Узнать цены
+            </Button>
+          </Link>
         </div>
         <div className="grid grid-cols-1 gap-4">
           {features.map((feature, index) => (
