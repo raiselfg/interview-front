@@ -2,6 +2,7 @@ import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { APP_ROUTES } from '@/constants';
+import { Card } from '../ui/card';
 
 const features = [
   { name: 'Увеличенные возможности AI' },
@@ -12,7 +13,7 @@ const features = [
 export function CTASection() {
   return (
     <div className="flex flex-col gap-12 items-center">
-      <div className="text-foreground w-full max-w-2xl lg:max-w-full grid grid-cols-1 md:grid-cols-2 text-center md:text-left gap-8 items-center border border-border bg-card/50 rounded-[2.5rem] p-8 lg:p-12 overflow-hidden relative">
+      <Card className="w-full max-w-2xl lg:max-w-full grid grid-cols-1 md:grid-cols-2 p-8 lg:p-12 text-center md:text-left gap-8 items-center">
         <div className="mx-auto flex flex-col items-center md:items-start gap-6">
           <h2 className="text-4xl font-bold">Готов стать лучше?</h2>
           <p className="text-muted-foreground text-lg max-w-sm">
@@ -35,7 +36,7 @@ export function CTASection() {
             </div>
           ))}
         </div>
-      </div>
+      </Card>
 
       <span className="text-muted-foreground">made by @raiselfg</span>
     </div>

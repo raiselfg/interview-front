@@ -4,6 +4,7 @@ import { CodeBlock } from '../ui/code-block';
 import { Spinner } from '../ui/spinner';
 import { TextGenerateEffect } from '../ui/text-generate-effect';
 import { EncryptedText } from '../ui/encrypted-text';
+import { Card, CardContent, CardHeader } from '../ui/card';
 
 const code = `function MyComponent(props) {
   return (
@@ -45,14 +46,12 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="relative bg-card border border-border rounded-3xl p-3 shadow-2xl w-full max-w-2xl mx-auto">
-        <div className="space-y-3 font-mono text-sm text-muted-foreground">
-          <p className="text-primary font-bold flex items-center gap-1">
-            <Spinner /> Анализирую код...
-          </p>
-          <CodeBlock language="tsx" code={code} />
+      <Card className="p-2 w-full max-w-2xl mx-auto">
+        <div className="flex items-center gap-2">
+          <Spinner /> <p>Анализирую код...</p>
         </div>
-      </div>
+        <CodeBlock language="tsx" code={code} />
+      </Card>
     </div>
   );
 }

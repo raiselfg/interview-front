@@ -4,6 +4,7 @@ import { FaJsSquare, FaReact } from 'react-icons/fa';
 import { BiLogoTypescript } from 'react-icons/bi';
 import Link from 'next/link';
 import { APP_ROUTES } from '@/constants';
+import { Card } from '../ui/card';
 
 const TECH_STACK = [
   { name: 'JavaScript', progress: 55, icon: <FaJsSquare size={32} /> },
@@ -35,22 +36,18 @@ export function TrainerSection() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mx-auto w-full max-w-2xl lg:max-w-full">
         {TECH_STACK.map((item, index) => (
-          <div
-            key={`tech-stack-${index}-${item.name}`}
-            className="group p-8 border border-border rounded-3xl bg-accent/35 flex flex-col gap-4"
-          >
+          <Card className="p-8" key={`tech-stack-${item.name}`}>
             <div className="flex items-center gap-2">
               {item.icon}
               <h3 className="text-xl font-bold">{item.name}</h3>
             </div>
-
             <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
               <div
                 className="h-full bg-primary transition-all"
                 style={{ width: `${item.progress}%` }}
               />
             </div>
-          </div>
+          </Card>
         ))}
       </div>
     </section>
