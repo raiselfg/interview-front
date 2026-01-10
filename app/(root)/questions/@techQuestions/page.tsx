@@ -1,8 +1,13 @@
 import { API_BASE_URL, API_ROUTES } from '@/constants';
 import { Technology } from '@/types';
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Выберите технологию | Interview Review',
+  description: 'Список доступных технологий для подготовки к собеседованию.',
+};
 
 export default async function TechQuestionsPage() {
   const res = await fetch(`${API_BASE_URL}${API_ROUTES.TECHNOLOGIES}`, {
