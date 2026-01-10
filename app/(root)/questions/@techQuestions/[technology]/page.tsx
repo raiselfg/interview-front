@@ -29,7 +29,7 @@ export default async function TechQuestionsPage({
       `${API_BASE_URL}${API_ROUTES.QUESTIONS}?technology=${technology}`,
       {
         method: 'GET',
-        next: { revalidate: 3600 },
+        next: { revalidate: 60 * 5 },
         headers: {
           'Content-Type': 'application/json',
         },
@@ -40,7 +40,7 @@ export default async function TechQuestionsPage({
       `${API_BASE_URL}${API_ROUTES.ANSWERS}?technology=${technology}`,
       {
         method: 'GET',
-        next: { revalidate: 3600 },
+        next: { revalidate: 60 * 5 },
         headers: {
           'Content-Type': 'application/json',
         },
@@ -49,7 +49,7 @@ export default async function TechQuestionsPage({
 
     const fetchGrades = await fetch(`${API_BASE_URL}${API_ROUTES.GRADES}`, {
       method: 'GET',
-      next: { revalidate: 3600 },
+      next: { revalidate: 60 * 5 },
       headers: {
         'Content-Type': 'application/json',
       },

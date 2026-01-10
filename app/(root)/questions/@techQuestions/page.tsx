@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 
 export default async function TechQuestionsPage() {
   const res = await fetch(`${API_BASE_URL}${API_ROUTES.TECHNOLOGIES}`, {
-    next: { revalidate: 60 },
+    next: { revalidate: 60 * 5 },
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
