@@ -4,7 +4,6 @@ import { Technology } from '@/types';
 
 export default async function TechSidebarPage() {
   const res = await fetch(`${API_BASE_URL}${API_ROUTES.TECHNOLOGIES}`, {
-    next: { revalidate: 60 * 5 },
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

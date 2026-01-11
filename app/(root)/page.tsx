@@ -3,6 +3,9 @@ import { HeroSection } from '@/components/home/hero-section';
 import { TrainerSection } from '@/components/home/trainer-section';
 import { Container } from '@/components/ui/container';
 
+export const dynamic = 'error';
+export const revalidate = 1800;
+
 export default function Home() {
   return (
     <>

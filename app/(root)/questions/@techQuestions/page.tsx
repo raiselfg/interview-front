@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { Metadata } from 'next';
 
+export const dynamic = 'error';
+export const revalidate = 1800;
+
 export const metadata: Metadata = {
   title: 'Выберите технологию',
   description: 'Список доступных технологий для подготовки к собеседованию.',
@@ -11,7 +14,6 @@ export const metadata: Metadata = {
 
 export default async function TechQuestionsPage() {
   const res = await fetch(`${API_BASE_URL}${API_ROUTES.TECHNOLOGIES}`, {
-    next: { revalidate: 60 * 5 },
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

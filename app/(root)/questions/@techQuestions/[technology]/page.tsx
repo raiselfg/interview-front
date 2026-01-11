@@ -11,12 +11,11 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { ExternalLink } from 'lucide-react';
-
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
 export const dynamic = 'error';
-export const revalidate = 600;
+export const revalidate = 1800;
 
 export async function generateStaticParams() {
   const res = await fetch(`${API_BASE_URL}${API_ROUTES.TECHNOLOGIES}`);

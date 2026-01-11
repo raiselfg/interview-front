@@ -6,6 +6,9 @@ import { APP_ROUTES } from '@/constants';
 import { Metadata } from 'next';
 import { BookOpen, CheckCircle2, Code2, Rocket, Trophy, Users, Zap } from 'lucide-react';
 
+export const dynamic = 'error';
+export const revalidate = 1800;
+
 export const metadata: Metadata = {
   title: 'О нас',
   description:
