@@ -42,7 +42,6 @@ export const auth = betterAuth({
       secure: true,
       sameSite: 'lax',
     },
-    cookiePrefix: 'frontsobes',
   },
 
   plugins: [nextCookies()],

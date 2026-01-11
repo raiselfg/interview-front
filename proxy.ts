@@ -1,11 +1,14 @@
+import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
+import { auth } from './lib/auth/better-auth';
 
 export async function proxy(request: NextRequest) {
-  const sessionCookie = request.cookies.get('frontsobes.session_token');
-  // THIS IS NOT SECURE!
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  }); // THIS IS NOT SECURE!
   // This is the recommended approach to optimistically redirect users
   // We recommend handling auth checks in each page/route
-  if (!sessionCookie) {
+  if (!session) {
     return NextResponse.redirect(new URL('/auth/login', request.url));
   }
   return NextResponse.next();
