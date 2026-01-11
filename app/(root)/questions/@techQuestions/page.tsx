@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Выберите технологию | Interview Review',
+  title: 'Выберите технологию',
   description: 'Список доступных технологий для подготовки к собеседованию.',
 };
 

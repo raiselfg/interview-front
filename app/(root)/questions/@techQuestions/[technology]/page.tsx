@@ -35,7 +35,7 @@ export async function generateMetadata({
   const paramsTech = decodeURIComponent(technology);
 
   return {
-    title: `Вопросы по ${paramsTech} | Фронт Собес`,
+    title: `Вопросы по ${paramsTech}`,
     description: `Список вопросов и ответов для подготовки к собеседованию по технологии ${paramsTech}.`,
   };
 }
