@@ -39,7 +39,7 @@ export const auth = betterAuth({
     useSecureCookies: true,
     defaultCookieAttributes: {
       httpOnly: true,
-      secure: true,
+      // secure: true,
       sameSite: 'lax',
     },
     cookiePrefix: 'frontsobes',

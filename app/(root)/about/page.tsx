@@ -21,9 +21,8 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <Container className="py-12 md:py-24 px-4 2xl:px-0">
-      {/* Hero Section */}
       <div className="flex flex-col items-center text-center gap-6 mb-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
-        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground/70">
+        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-linear-to-br from-foreground to-foreground/70">
           Готовься к собеседованиям <br className="hidden md:block" />
           <span className="text-primary">профессионально</span>
         </h1>
@@ -39,7 +38,6 @@ export default function AboutPage() {
         </Link>
       </div>
 
-      {/* Features Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
         {features.map((feature) => (
           <Card
@@ -57,7 +55,6 @@ export default function AboutPage() {
         ))}
       </div>
 
-      {/* Stats Section or Bottom CTA */}
       <div className="rounded-3xl bg-muted/50 p-8 md:p-12 text-center animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-backwards">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">Вклад в сообщество</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
