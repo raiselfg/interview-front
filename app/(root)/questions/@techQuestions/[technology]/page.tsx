@@ -15,6 +15,9 @@ import { ExternalLink } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
+export const dynamic = 'error';
+export const revalidate = 600;
+
 export async function generateStaticParams() {
   const res = await fetch(`${API_BASE_URL}${API_ROUTES.TECHNOLOGIES}`);
   const technologies: Technology[] = await res.json();
@@ -53,7 +56,6 @@ export default async function TechQuestionsPage({
     `${API_BASE_URL}${API_ROUTES.QUESTIONS}?technology=${technology}`,
     {
       method: 'GET',
-      next: { revalidate: 60 * 5 },
       headers: {
         'Content-Type': 'application/json',
       },
@@ -62,7 +64,6 @@ export default async function TechQuestionsPage({
 
   const answersPromise = fetch(`${API_BASE_URL}${API_ROUTES.ANSWERS}?technology=${technology}`, {
     method: 'GET',
-    next: { revalidate: 60 * 5 },
     headers: {
       'Content-Type': 'application/json',
     },
@@ -70,7 +71,6 @@ export default async function TechQuestionsPage({
 
   const gradesPromise = fetch(`${API_BASE_URL}${API_ROUTES.GRADES}`, {
     method: 'GET',
-    next: { revalidate: 60 * 5 },
     headers: {
       'Content-Type': 'application/json',
     },
