@@ -12,7 +12,10 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL('/auth/login', request.url));
   }
 
-  if (session?.session && pathname.startsWith('/auth')) {
+  if (
+    session?.session &&
+    (pathname.startsWith('/auth/login') || pathname.startsWith('/auth/signup'))
+  ) {
     return NextResponse.redirect(new URL('/profile', request.url));
   }
 
@@ -20,5 +23,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/profile', '/auth/:path*'],
+  matcher: ['/profile', '/auth/login', '/auth/signup'],
 };

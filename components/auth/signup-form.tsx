@@ -18,7 +18,7 @@ export const SignupForm = () => {
     if (state?.message) {
       if (state.success) {
         toast.success(state.message);
-        router.push(APP_ROUTES.LOGIN);
+        router.push(APP_ROUTES.PROFILE);
       } else {
         toast.error(state.message);
       }

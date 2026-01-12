@@ -19,6 +19,7 @@ export const auth = betterAuth({
     requireEmailVerification: false,
     minPasswordLength: 8,
     maxPasswordLength: 128,
+    autoSignIn: true,
   },
 
   socialProviders: {
