@@ -4,6 +4,7 @@ import { SignupFormSchema } from '../definitions';
 import { auth } from '../better-auth';
 import { FormState } from '@/types';
 import { headers } from 'next/headers';
+import { generateAvatar } from '@/lib/generate-avatar';
 
 export const signUp = async (prevState: FormState, formData: FormData): Promise<FormState> => {
   try {
@@ -22,11 +23,14 @@ export const signUp = async (prevState: FormState, formData: FormData): Promise<
 
     const { name, email, password } = validatedFields.data;
 
+    const avatar = generateAvatar(name);
+
     const response = await auth.api.signUpEmail({
       body: {
         name,
         email,
         password,
+        image: avatar,
       },
       // headers: await headers(),
       asResponse: true, // Essential for setting session cookies

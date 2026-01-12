@@ -23,14 +23,14 @@ export const ProfileBadge = () => {
   }, []);
 
   if (isLoading) {
-    return <Skeleton className="w-19.5 h-9" />;
+    return <Skeleton className="w-25 h-9" />;
   }
 
   return (
     <>
       {user ? (
         <Link href={APP_ROUTES.PROFILE}>
-          <div className="flex items-center gap-2 w-19.5 h-9 mx-auto">
+          <div className="flex items-center gap-2 w-max h-9 mx-auto">
             <p>{user.name}</p>
             {user.image && (
               <Image
