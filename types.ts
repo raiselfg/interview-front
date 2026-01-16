@@ -44,3 +44,10 @@ export type Answer = {
   createdAt: Date | null;
   updatedAt: Date | null;
 };
+
+export type QuestionWithData = {
+  question: Question;
+  answer: Answer;
+  grade: Grade;
+  technology: Technology;
+};
