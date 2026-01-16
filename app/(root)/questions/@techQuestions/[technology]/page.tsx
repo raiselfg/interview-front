@@ -1,4 +1,10 @@
-import { API_BASE_URL, API_ROUTES, CODE_BLOCK_LANGUAGES, GRADE_COLORS } from '@/constants';
+import {
+  API_BASE_URL,
+  API_ROUTES,
+  APP_ROUTES,
+  CODE_BLOCK_LANGUAGES,
+  GRADE_COLORS,
+} from '@/constants';
 import { Answer, Grade, Question, Technology } from '@/types';
 import {
   Accordion,
@@ -149,6 +155,16 @@ export default async function TechQuestionsPage({
                           Узнать больше
                         </Link>
                       )}
+
+                      <Link
+                        className="text-primary hover:underline text-sm flex items-center gap-1.5 w-fit"
+                        href={`${APP_ROUTES.QUESTION}/${question.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="size-4" />
+                        Перейти на страницу вопроса
+                      </Link>
                     </div>
 
                     {answer?.updatedAt && (

@@ -6,6 +6,7 @@ export const APP_ROUTES = {
   TRAINER: '/trainer',
   INTERVIEW: '/interview',
   QUESTIONS: '/questions',
+  QUESTION: '/question',
   PRICING: '/pricing',
   ABOUT: '/about',
 };
