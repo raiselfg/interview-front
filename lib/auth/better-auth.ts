@@ -1,8 +1,9 @@
-import { betterAuth } from 'better-auth/minimal';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { betterAuth } from 'better-auth/minimal';
+import { nextCookies } from 'better-auth/next-js';
+
 import { db } from '@/drizzle/index';
 import * as schema from '@/drizzle/schema';
-import { nextCookies } from 'better-auth/next-js';
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {

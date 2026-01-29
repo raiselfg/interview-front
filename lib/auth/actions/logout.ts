@@ -1,8 +1,10 @@
 'use server';
 
-import { FormState } from '@/types';
-import { auth } from '../better-auth';
 import { headers } from 'next/headers';
+
+import { FormState } from '@/types';
+
+import { auth } from '../better-auth';
 
 export const logout = async (): Promise<FormState> => {
   try {

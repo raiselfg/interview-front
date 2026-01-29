@@ -1,13 +1,11 @@
-import { Container } from '@/components/ui/container';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { APP_ROUTES } from '@/constants';
-import { Metadata } from 'next';
 import { BookOpen, CheckCircle2, Code2, Rocket, Trophy, Users, Zap } from 'lucide-react';
+import { Metadata } from 'next';
+import Link from 'next/link';
 
-export const dynamic = 'error';
-export const revalidate = 1800;
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Container } from '@/components/ui/container';
+import { APP_ROUTES } from '@/constants';
 
 export const metadata: Metadata = {
   title: 'О нас',

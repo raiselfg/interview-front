@@ -1,10 +1,11 @@
-import { Zap, Users } from 'lucide-react';
+import { Users, Zap } from 'lucide-react';
+import { memo } from 'react';
+
 import { Button } from '@/components/ui/button';
+
+import { Card } from '../ui/card';
 import { CodeBlock } from '../ui/code-block';
 import { Spinner } from '../ui/spinner';
-import { TextGenerateEffect } from '../ui/text-generate-effect';
-import { EncryptedText } from '../ui/encrypted-text';
-import { Card, CardContent, CardHeader } from '../ui/card';
 
 const code = `function MyComponent(props) {
   return (
@@ -15,18 +16,27 @@ const code = `function MyComponent(props) {
   );
 }`;
 
+const CodeExampleCard = memo(function CodeExampleCard() {
+  return (
+    <Card className="p-2 w-full max-w-2xl mx-auto">
+      <div className="flex items-center gap-2 mb-2">
+        <Spinner /> <p>Анализирую код...</p>
+      </div>
+      <CodeBlock language="tsx" code={code} />
+    </Card>
+  );
+});
+
 export function HeroSection() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <div className="flex flex-col gap-6">
-        <TextGenerateEffect
-          filter
-          className="text-5xl lg:text-7xl font-bold text-center lg:text-left"
-          words="Улучши свою фронтенд карьеру"
-        />
+        <h2 className="text-5xl lg:text-7xl font-bold text-center lg:text-left">
+          Улучши свою фронтенд карьеру
+        </h2>
 
         <p className="text-lg text-muted-foreground text-center lg:text-left">
-          <EncryptedText revealDelayMs={22} text="Тренируйся в паре с AI или реальным напарником" />
+          Тренируйся в паре с AI или реальным напарником
         </p>
 
         <div className="flex flex-wrap gap-4 items-center justify-center lg:justify-start">
@@ -46,12 +56,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <Card className="p-2 w-full max-w-2xl mx-auto">
-        <div className="flex items-center gap-2">
-          <Spinner /> <p>Анализирую код...</p>
-        </div>
-        <CodeBlock language="tsx" code={code} />
-      </Card>
+      <CodeExampleCard />
     </div>
   );
 }

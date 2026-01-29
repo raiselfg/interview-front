@@ -1,8 +1,11 @@
+import '@/app/globals.css';
+
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
-import '@/app/globals.css';
 import { Toaster } from 'sonner';
+
 import { ThemeProvider } from '@/components/theme/theme-provider';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -37,7 +40,7 @@ export default function Layout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <TooltipProvider>{children}</TooltipProvider>
         </ThemeProvider>
         <Toaster position="top-center" duration={3000} />
       </body>

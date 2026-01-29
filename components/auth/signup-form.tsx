@@ -1,14 +1,16 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useActionState, useEffect } from 'react';
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
+import { toast } from 'sonner';
+
+import { APP_ROUTES } from '@/constants';
 import { signUp } from '@/lib/auth/actions/signup';
+
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Spinner } from '../ui/spinner';
-import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
-import { APP_ROUTES } from '@/constants';
 
 export const SignupForm = () => {
   const router = useRouter();
@@ -23,7 +25,7 @@ export const SignupForm = () => {
         toast.error(state.message);
       }
     }
-  }, [state]);
+  }, [state, router]);
 
   return (
     <form action={action} className="flex flex-col gap-4">

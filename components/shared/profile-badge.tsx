@@ -1,30 +1,15 @@
-'use client';
-
-import { getSession } from '@/lib/auth/actions/get-session';
-import Link from 'next/link';
-import { Button } from '../ui/button';
+import { User } from 'better-auth/types';
 import Image from 'next/image';
+import Link from 'next/link';
+
 import { APP_ROUTES } from '@/constants';
-import { User } from 'better-auth';
-import { useEffect, useState } from 'react';
-import { Skeleton } from '../ui/skeleton';
+import { getSession } from '@/lib/auth/actions/get-session';
 
-export const ProfileBadge = () => {
-  const [user, setUser] = useState<Pick<User, 'name' | 'image'> | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+import { Button } from '../ui/button';
 
-  useEffect(() => {
-    const fetchSession = async () => {
-      const session = await getSession();
-      setUser(session?.user ?? null);
-      setIsLoading(false);
-    };
-    fetchSession();
-  }, []);
-
-  if (isLoading) {
-    return <Skeleton className="w-25 h-9" />;
-  }
+export const ProfileBadge = async () => {
+  const session = await getSession();
+  const user: User = session?.user;
 
   return (
     <>
@@ -35,7 +20,7 @@ export const ProfileBadge = () => {
             {user.image && (
               <Image
                 src={user.image}
-                alt={user.name}
+                alt={user.name ?? 'User avatar'}
                 width={32}
                 height={32}
                 className="rounded-full"

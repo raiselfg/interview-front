@@ -1,9 +1,10 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { AlertCircle, RefreshCcw } from 'lucide-react';
 import { startTransition } from 'react';
+
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 export default function ErrorPage({
   error,

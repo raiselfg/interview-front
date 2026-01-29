@@ -1,4 +1,4 @@
-import { TechnologiesSidebar } from '@/components/questions/technologies-sidebar';
+import { TechnologiesSidebar } from '@/components/question/technologies-sidebar';
 import { API_BASE_URL, API_ROUTES } from '@/constants';
 import { Technology } from '@/types';
 

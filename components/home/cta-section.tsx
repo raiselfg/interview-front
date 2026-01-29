@@ -1,7 +1,10 @@
 import { Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { memo } from 'react';
+
+import { Button } from '@/components/ui/button';
 import { APP_ROUTES } from '@/constants';
+
 import { Card } from '../ui/card';
 
 const features = [
@@ -9,6 +12,15 @@ const features = [
   { name: 'Лучшие тренировки' },
   { name: 'Персональная аналитика' },
 ];
+
+const FeatureListItem = memo(function FeatureListItem({ name }: { name: string }) {
+  return (
+    <div className="flex items-center gap-3 p-4 bg-background border border-border rounded-2xl">
+      <Check className="h-4 w-4 text-primary" />
+      <span className="font-medium">{name}</span>
+    </div>
+  );
+});
 
 export function CTASection() {
   return (
@@ -26,14 +38,8 @@ export function CTASection() {
           </Link>
         </div>
         <div className="grid grid-cols-1 gap-4">
-          {features.map((feature, index) => (
-            <div
-              key={`${feature.name}-${index}`}
-              className="flex items-center gap-3 p-4 bg-background border border-border rounded-2xl"
-            >
-              <Check className="h-4 w-4 text-primary" />
-              <span className="font-medium">{feature.name}</span>
-            </div>
+          {features.map((feature) => (
+            <FeatureListItem key={feature.name} name={feature.name} />
           ))}
         </div>
       </Card>

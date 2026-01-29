@@ -1,6 +1,7 @@
+import Link from 'next/link';
+
 import { LoginForm } from '@/components/auth/login-form';
 import { OAuthButton } from '@/components/auth/oauth-button';
-import Link from 'next/link';
 import { APP_ROUTES } from '@/constants';
 
 export default function LoginPage() {

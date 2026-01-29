@@ -1,12 +1,14 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useActionState, useEffect } from 'react';
-import { logout } from '@/lib/auth/actions/logout';
 import { toast } from 'sonner';
+
+import { APP_ROUTES } from '@/constants';
+import { logout } from '@/lib/auth/actions/logout';
+
 import { Button } from '../ui/button';
 import { Spinner } from '../ui/spinner';
-import { useRouter } from 'next/navigation';
-import { APP_ROUTES } from '@/constants';
 
 export const LogoutButton = () => {
   const router = useRouter();
@@ -21,7 +23,7 @@ export const LogoutButton = () => {
         toast.error(state.message);
       }
     }
-  }, [state]);
+  }, [state, router]);
 
   return (
     <form action={action}>

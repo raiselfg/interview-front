@@ -1,11 +1,9 @@
+import { Metadata } from 'next';
+import Link from 'next/link';
+
+import { Card } from '@/components/ui/card';
 import { API_BASE_URL, API_ROUTES } from '@/constants';
 import { Technology } from '@/types';
-import Link from 'next/link';
-import { Card } from '@/components/ui/card';
-import { Metadata } from 'next';
-
-export const dynamic = 'error';
-export const revalidate = 1800;
 
 export const metadata: Metadata = {
   title: 'Выберите технологию',

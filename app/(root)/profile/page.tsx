@@ -1,7 +1,8 @@
-import { getSession } from '@/lib/auth/actions/get-session';
-import { LogoutButton } from '@/components/auth/logout-button';
 import { redirect } from 'next/navigation';
+
+import { LogoutButton } from '@/components/auth/logout-button';
 import { APP_ROUTES } from '@/constants';
+import { getSession } from '@/lib/auth/actions/get-session';
 
 export default async function ProfilePage() {
   const data = await getSession();

@@ -1,8 +1,7 @@
+import { Menu } from 'lucide-react';
 import Link from 'next/link';
-import { ThemeToggle } from '../theme/theme-toggle';
-import { Container } from '../ui/container';
-import { ProfileBadge } from './profile-badge';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { Suspense } from 'react';
+
 import {
   Sheet,
   SheetContent,
@@ -11,8 +10,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { APP_ROUTES } from '@/constants';
+
+import { ThemeToggle } from '../theme/theme-toggle';
+import { Container } from '../ui/container';
+import { ProfileBadge } from './profile-badge';
 
 const links = [
   { href: APP_ROUTES.TRAINER, label: 'Тренировка', tooltipMessage: 'Перейти в тренировку' },
@@ -33,8 +37,8 @@ export const Header = () => {
 
           <div className="hidden lg:flex items-center gap-8">
             <div className="flex gap-6">
-              {links.map((link, index) => (
-                <Tooltip key={`${index}-${link.href}`}>
+              {links.map((link) => (
+                <Tooltip key={link.href}>
                   <TooltipTrigger asChild>
                     <Link href={link.href}>
                       <span className="cursor-pointer">{link.label}</span>
@@ -49,7 +53,9 @@ export const Header = () => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <div className="flex items-center">
-                  <ProfileBadge />
+                  <Suspense fallback={<Skeleton className="w-25 h-9" />}>
+                    <ProfileBadge />
+                  </Suspense>
                 </div>
               </TooltipTrigger>
               <TooltipContent>
@@ -74,17 +80,19 @@ export const Header = () => {
                 <Menu />
               </SheetTrigger>
               <SheetContent>
-                <SheetDescription className="sr-only"></SheetDescription>
+                <SheetDescription className="sr-only" />
                 <SheetHeader>
                   <SheetTitle>Меню</SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-4 items-start px-4">
-                  {links.map((link, index) => (
-                    <Link href={link.href} key={`${index}-${link.href}`}>
+                  {links.map((link) => (
+                    <Link href={link.href} key={link.href}>
                       {link.label}
                     </Link>
                   ))}
-                  <ProfileBadge />
+                  <Suspense fallback={<Skeleton className="w-25 h-9" />}>
+                    <ProfileBadge />
+                  </Suspense>
                   <ThemeToggle />
                 </div>
               </SheetContent>

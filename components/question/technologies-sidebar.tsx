@@ -1,16 +1,16 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { APP_ROUTES } from '@/constants';
-import { Technology } from '@/types';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 
-// Вынести общий компонент для кнопок
-function TechnologyButton({
+import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { APP_ROUTES } from '@/constants';
+import { Technology } from '@/types';
+
+const TechnologyButton = memo(function TechnologyButton({
   tech,
   isActive,
   onClick,
@@ -26,7 +26,7 @@ function TechnologyButton({
       </Button>
     </Link>
   );
-}
+});
 
 export function TechnologiesSidebar({ technologies }: { technologies: Technology[] }) {
   const params = useParams();
@@ -37,14 +37,16 @@ export function TechnologiesSidebar({ technologies }: { technologies: Technology
     return <div className="text-sm text-muted-foreground">Технологии не найдены</div>;
   }
 
+  const handleSheetClose = useCallback(() => setIsOpen(false), []);
+
   const buttonList = (
     <div className="flex flex-col gap-2.5">
       {technologies.map((tech) => (
         <TechnologyButton
-          key={`${tech.order}-${tech.name}`}
+          key={tech.id}
           tech={tech}
           isActive={paramsTech === tech.name}
-          onClick={() => setIsOpen(false)}
+          onClick={handleSheetClose}
         />
       ))}
     </div>

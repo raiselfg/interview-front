@@ -1,10 +1,12 @@
 'use server';
 
-import { SignupFormSchema } from '../definitions';
-import { auth } from '../better-auth';
-import { FormState } from '@/types';
 import { headers } from 'next/headers';
+
 import { generateAvatar } from '@/lib/generate-avatar';
+import { FormState } from '@/types';
+
+import { auth } from '../better-auth';
+import { SignupFormSchema } from '../definitions';
 
 export const signUp = async (prevState: FormState, formData: FormData): Promise<FormState> => {
   try {

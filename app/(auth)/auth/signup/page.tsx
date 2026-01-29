@@ -1,6 +1,7 @@
+import Link from 'next/link';
+
 import { OAuthButton } from '@/components/auth/oauth-button';
 import { SignupForm } from '@/components/auth/signup-form';
-import Link from 'next/link';
 import { APP_ROUTES } from '@/constants';
 
 export default function SignupPage() {

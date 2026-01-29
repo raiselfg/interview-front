@@ -1,27 +1,21 @@
 'use client';
 
 import { useActionState, useEffect } from 'react';
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
+import { toast } from 'sonner';
+
 import { login } from '@/lib/auth/actions/login';
+
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Spinner } from '../ui/spinner';
-import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
-import { APP_ROUTES } from '@/constants';
 
 export const LoginForm = () => {
-  const router = useRouter();
   const [state, action, pending] = useActionState(login, undefined);
 
   useEffect(() => {
-    if (state?.message) {
-      if (state.success) {
-        toast.success(state.message);
-        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}${APP_ROUTES.PROFILE}`);
-      } else {
-        toast.error(state.message);
-      }
+    if (state?.message && !state.success) {
+      toast.error(state.message);
     }
   }, [state]);
 

@@ -1,7 +1,24 @@
 'use client';
-import React from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { memo, useState } from 'react';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash';
+import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
+import go from 'react-syntax-highlighter/dist/cjs/languages/prism/go';
+import java from 'react-syntax-highlighter/dist/cjs/languages/prism/java';
+import javascript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
+import json from 'react-syntax-highlighter/dist/cjs/languages/prism/json';
+import python from 'react-syntax-highlighter/dist/cjs/languages/prism/python';
+import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
+import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript';
 import { nord } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+// todo: check if languages is needed to be registered like this
+
+SyntaxHighlighter.registerLanguage('tsx', tsx);
+SyntaxHighlighter.registerLanguage('typescript', typescript);
+SyntaxHighlighter.registerLanguage('javascript', javascript);
+SyntaxHighlighter.registerLanguage('css', css);
+SyntaxHighlighter.registerLanguage('json', json);
 
 type CodeBlockProps = {
   language: string;
@@ -22,8 +39,13 @@ type CodeBlockProps = {
     }
 );
 
-export const CodeBlock = ({ language, code, highlightLines = [], tabs = [] }: CodeBlockProps) => {
-  const [activeTab, setActiveTab] = React.useState(0);
+export const CodeBlock = memo(function CodeBlock({
+  language,
+  code,
+  highlightLines = [],
+  tabs = [],
+}: CodeBlockProps) {
+  const [activeTab, setActiveTab] = useState(0);
 
   const tabsExist = tabs.length > 0;
 
@@ -38,7 +60,7 @@ export const CodeBlock = ({ language, code, highlightLines = [], tabs = [] }: Co
           <div className="flex  overflow-x-auto">
             {tabs.map((tab, index) => (
               <button
-                key={index}
+                key={tab.name}
                 onClick={() => setActiveTab(index)}
                 className={`px-3 py-2! text-xs transition-colors font-sans ${
                   activeTab === index ? 'text-white' : 'text-zinc-400 hover:text-zinc-200'
@@ -57,7 +79,7 @@ export const CodeBlock = ({ language, code, highlightLines = [], tabs = [] }: Co
           margin: 0,
           padding: 0,
           background: 'transparent',
-          fontSize: '0.875rem', // text-sm equivalent
+          fontSize: '0.875rem',
         }}
         wrapLines={true}
         showLineNumbers={true}
@@ -76,4 +98,4 @@ export const CodeBlock = ({ language, code, highlightLines = [], tabs = [] }: Co
       </SyntaxHighlighter>
     </div>
   );
-};
+});

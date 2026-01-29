@@ -1,9 +1,12 @@
 import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { FaJsSquare, FaReact } from 'react-icons/fa';
-import { BiLogoTypescript } from 'react-icons/bi';
 import Link from 'next/link';
+import { memo } from 'react';
+import { BiLogoTypescript } from 'react-icons/bi';
+import { FaJsSquare, FaReact } from 'react-icons/fa';
+
+import { Button } from '@/components/ui/button';
 import { APP_ROUTES } from '@/constants';
+
 import { Card } from '../ui/card';
 
 const TECH_STACK = [
@@ -11,6 +14,28 @@ const TECH_STACK = [
   { name: 'React', progress: 70, icon: <FaReact size={32} /> },
   { name: 'TypeScript', progress: 35, icon: <BiLogoTypescript size={32} /> },
 ];
+
+const TechStackCard = memo(function TechStackCard({
+  name,
+  progress,
+  icon,
+}: {
+  name: string;
+  progress: number;
+  icon: React.ReactNode;
+}) {
+  return (
+    <Card className="p-8">
+      <div className="flex items-center gap-2">
+        {icon}
+        <h3 className="text-xl font-bold">{name}</h3>
+      </div>
+      <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
+        <div className="h-full bg-primary transition-all" style={{ width: `${progress}%` }} />
+      </div>
+    </Card>
+  );
+});
 
 export function TrainerSection() {
   return (
@@ -35,19 +60,13 @@ export function TrainerSection() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mx-auto w-full max-w-2xl lg:max-w-full">
-        {TECH_STACK.map((item, index) => (
-          <Card className="p-8" key={`tech-stack-${item.name}`}>
-            <div className="flex items-center gap-2">
-              {item.icon}
-              <h3 className="text-xl font-bold">{item.name}</h3>
-            </div>
-            <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
-              <div
-                className="h-full bg-primary transition-all"
-                style={{ width: `${item.progress}%` }}
-              />
-            </div>
-          </Card>
+        {TECH_STACK.map((item) => (
+          <TechStackCard
+            key={item.name}
+            name={item.name}
+            progress={item.progress}
+            icon={item.icon}
+          />
         ))}
       </div>
     </section>

@@ -1,5 +1,6 @@
-import { Container } from '@/components/ui/container';
 import { Suspense } from 'react';
+
+import { Container } from '@/components/ui/container';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function QuestionLayout({

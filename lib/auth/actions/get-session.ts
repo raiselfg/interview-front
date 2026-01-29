@@ -1,6 +1,7 @@
 'use server';
 
 import { headers } from 'next/headers';
+
 import { auth } from '../better-auth';
 
 export const getSession = async () => {

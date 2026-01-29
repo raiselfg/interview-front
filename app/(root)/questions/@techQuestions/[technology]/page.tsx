@@ -1,3 +1,16 @@
+import { ExternalLink } from 'lucide-react';
+import { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import { Badge } from '@/components/ui/badge';
+import { CodeBlock } from '@/components/ui/code-block';
 import {
   API_BASE_URL,
   API_ROUTES,
@@ -5,45 +18,8 @@ import {
   CODE_BLOCK_LANGUAGES,
   GRADE_COLORS,
 } from '@/constants';
-import { Answer, Grade, Question, Technology } from '@/types';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-import { CodeBlock } from '@/components/ui/code-block';
-import Link from 'next/link';
-import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { ExternalLink } from 'lucide-react';
-import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
-
-export const dynamic = 'error';
-export const revalidate = 1800;
-
-export async function generateStaticParams() {
-  const res = await fetch(`${API_BASE_URL}${API_ROUTES.TECHNOLOGIES}`);
-  const technologies: Technology[] = await res.json();
-  return technologies.map((tech) => ({
-    technology: tech.name,
-  }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ technology: string }>;
-}): Promise<Metadata> {
-  const { technology } = await params;
-  const paramsTech = decodeURIComponent(technology);
-
-  return {
-    title: `Вопросы по ${paramsTech}`,
-    description: `Список вопросов и ответов для подготовки к собеседованию по технологии ${paramsTech}.`,
-  };
-}
+import { Answer, Grade, Question } from '@/types';
 
 export default async function TechQuestionsPage({
   params,

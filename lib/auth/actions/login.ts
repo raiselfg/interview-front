@@ -1,10 +1,12 @@
 'use server';
 
-import { LoginFormSchema } from '../definitions';
-import { auth } from '../better-auth';
-import { FormState } from '@/types';
-import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+
 import { APP_ROUTES } from '@/constants';
+import { FormState } from '@/types';
+
+import { auth } from '../better-auth';
+import { LoginFormSchema } from '../definitions';
 
 export const login = async (prevState: FormState, formData: FormData): Promise<FormState> => {
   try {
@@ -32,9 +34,7 @@ export const login = async (prevState: FormState, formData: FormData): Promise<F
       asResponse: true, // Essential for setting cookies in Next.js 16
     });
 
-    if (response.ok) {
-      return { message: 'Вход выполнен успешно', success: true };
-    } else {
+    if (!response.ok) {
       return { message: 'Неверные учетные данные', success: false };
     }
   } catch (error) {
@@ -44,4 +44,6 @@ export const login = async (prevState: FormState, formData: FormData): Promise<F
       success: false,
     };
   }
+
+  redirect(APP_ROUTES.PROFILE);
 };
